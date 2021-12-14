@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CatalogoWeb.Models.ProductoModel>
+
+@{
+    ViewData["Title"] = "Catalogo Actual";
+    List<string>
+       categorias = new List<string>();
+    //categorias.Add(@Html.DisplayFor(modelItem => item.Categoria));
+
+    @foreach (var item in Model)
+    {
+        categorias.Add((item.Categoria));
+    }
+
+    List<string>
+      categoriawDuplicate = categorias.Distinct().ToList();
+}
+<h1 class="text-md-center">Catalogo de productos</h1>
+
+<div>
+    <h3>Categorias</h3>
+</div>
+
+
+<ul class="list-group">
+    @foreach (var item in categoriawDuplicate)
+    {
+        <a class="list-group-item list-group-item-action" asp-controller="Producto" asp-action="FilterCategoria" asp-route-Categoria="@item">@item</a>
+    }
+</ul>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<h1>Lista de Productos</h1>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "AddOrEdit")
+</p>
+
+<div class="container">
+
+    <div class="row mt-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <img src=~/@Url.Content(item.Imagen) alt="Sin Foto" img: style="max-width:100%;width:auto;height:auto;">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Categoria @Html.DisplayFor(modelItem => item.Categoria)</h6>
+                        <p class="card-text">Precio @Html.DisplayFor(modelItem => item.Precio)</p>
+                        <p class="card-text">Descripcion: @Html.DisplayFor(modelItem => item.Descripcion)</p>
+                        <p class="card-text">Cantidad Disponible: @Html.DisplayFor(modelItem => item.Cantidad)</p>
+                        <p class="card-text">Fecha de Creación: @Html.DisplayFor(modelItem => item.Fecha)</p>
+                        <p class="card-text">Referencia: @Html.DisplayFor(modelItem => item.Codigo)</p>
+                        @Html.ActionLink("Edit", "AddOrEdit", new { id = item.Id })
+                    </div>
+                </div>
+            </div>}
+    </div>
+</div>

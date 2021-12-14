@@ -1,0 +1,47 @@
+﻿
+@model CatalogoWeb.Models.HomeModel
+@{
+    ViewData["Usuario"] = "Usuario";
+
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido a la pagina inicial</h1>
+    <p>Ingrese sus credenciales correctamente para ingresar al sistema</p>
+
+</div>
+<div class="row">
+    <div class="col-md-10">
+
+        <form asp-controller="Home" asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Usuario" class="control-label"></label>
+                <input asp-for="Usuario" class="form-control" />
+                <span asp-validation-for="Usuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasena" class="control-label"></label>
+                <input asp-for="Contrasena" class="form-control" />
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <input type="submit" value="Ingresar" class="btn btn-primary" />
+
+                </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="form-group text-center">
+    <p>.</p>
+    <p>O si no tiene una cuenta </p>
+    <p>Registrese aquí </p>
+
+    <a class="btn btn-primary" asp-action="UsuarioAddorEdit">Registrarse</a>
+
+</div>
+
